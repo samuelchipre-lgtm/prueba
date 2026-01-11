@@ -1,0 +1,47 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.formulario {
+  width: 300px;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 4px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+.mensaje {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.input-error {
+  border-color: red;
+}
+
+.input-ok {
+  border-color: green;
+}
+
+.mensaje-error {
+  color: red;
+}
+
+.mensaje-ok {
+  color: green;
+}
+
+.boton {
+  padding: 8px 15px;
+  margin-top: 10px;
+}
+
+.boton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

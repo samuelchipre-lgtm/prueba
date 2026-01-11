@@ -1,0 +1,21 @@
+Usuario escribe
+   ↓
+input dispara validaciones
+   ↓
+Botón se habilita
+   ↓
+submit
+   ↓
+Se crea objeto usuario
+   ↓
+Array usuarios
+   ↓
+LocalStorage
+   ↓
+mostrarUsuarios()
+   ↓
+Tabla HTML
+
+
+
+flujo de datos

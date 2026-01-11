@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario con Validación</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <form id="formulario" class="formulario" novalidate>
+
+    <!-- NOMBRE -->
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" class="input">
+    <span id="mensaje1" class="mensaje"></span>
+
+    <!-- CORREO -->
+    <label for="correo">Correo</label>
+    <input type="email" id="correo" class="input">
+    <span id="mensaje2" class="mensaje"></span>
+
+    <!-- PASSWORD -->
+    <label for="password">Contraseña</label>
+    <input type="password" id="password" class="input">
+    <span id="mensaje3" class="mensaje"></span>
+
+    <!-- BOTÓN -->
+    <button id="boton" class="boton" type="submit" disabled>
+      Enviar
+    </button>
+
+  </form>
+  <table id="tablaUsuarios" border="1">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Correo</th>
+      <th>Contraseña</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<script src="app.js"></script> <!-- tu JS va después -->
+
+  
+</body>
+</html>
