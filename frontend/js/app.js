@@ -8,6 +8,7 @@ const mensaje2=document.getElementById("mensaje2");
 const password=document.getElementById("password");
 const mensaje3=document.getElementById("mensaje3");
 const boton=document.getElementById("boton");
+const loader = document.getElementById("loader");
 let usuarios = [];
 
 
@@ -101,27 +102,62 @@ password.addEventListener("input", validarformulario);
   
   
 //controla el boton submit//
-    formulario.addEventListener("submit", (event) =>{
+    formulario.addEventListener("submit",  async (event) =>{
   event.preventDefault();
 
-if(validarnombre() && validarcorreo() && validarpassword())
-{
+if(!validarnombre() || !validarcorreo() || !validarpassword()){
+  return ;
+}
+
   console.log("listo para enviar");
      // Agregar usuario a la tabla
 
-  let nuevoUsuario;
-    if(!boton.disabled) {
-     nuevoUsuario={
+ 
+   
+    let usuario={
         id: Date.now(),
         nombre: nombre.value,
         correo: correo.value,
         password: password.value
       };
-      usuarios.push(nuevoUsuario);
-      guardarEnLocalStorage();
-      }
-    mostrarUsuarios();
-}
+    
+      
+  boton.disabled = true;
+  loader.classList.remove("hidden");
+  const textoOriginal = boton.innerText;
+  boton.innerText = "Enviando...";
+      
+    try {
+    const respuesta = await fetch("http://localhost:3000/register", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(usuario)
+    });
+
+    if (!respuesta.ok) {
+      throw new Error("Error al enviar los datos");
+    }
+
+    const data = await respuesta.json();
+    console.log("Respuesta del servidor:", data);
+
+    alert("Usuario registrado con éxito ");
+    formulario.reset();
+    nombre.focus();
+  } catch (error) {
+    console.error(error);
+    alert("Error al registrar usuario ");
+  }
+
+  finally {
+    // 🔓 Pase lo que pase, el botón vuelve
+    boton.disabled = false;
+    loader.classList.add("hidden");
+    boton.innerText = textoOriginal;
+  }
+
 
 
 
@@ -138,7 +174,7 @@ function cargarUsuarios() {
   if (datos) {
     usuarios = JSON.parse(datos).map(u => ({
       ...u,
-      id: Number(u.id) // ⚡ convertir id a número
+      id: Number(u.id) //  convertir id a número
     }));
     mostrarUsuarios();
   }
@@ -204,5 +240,7 @@ tablaUsuarios.addEventListener("click", (e) => {
     mostrarUsuarios();
   }
 });
+
+
 
 cargarUsuarios(); 
